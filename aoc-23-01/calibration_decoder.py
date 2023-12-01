@@ -4,23 +4,6 @@ COUNTABLE_STRS = ["one", "two", "three", "four", "five", "six", "seven", "eight"
 ALL_COUNTABLES = COUNTABLES + COUNTABLE_STRS
 
 
-# def decode_line(line : str) -> int:
-#     nums = []
-#     for c in line:
-#         if c in COUNTABLES:
-#             nums.append(c)
-
-#     return int(nums[0] + nums[-1])
-
-
-# def sum_lines() -> int:
-#     sum = 0
-#     with open(FILE_NAME, "r") as file:
-#         for l in file.readlines():
-#             sum += decode_line(l)
-
-#     return sum
-
 def tokenize_nums(line : str) -> list:
     found_list = []
     i = 0
@@ -47,12 +30,6 @@ def calculate_from_word_list(word_list : list) -> int:
 
 
 def main():
-    b1 = "eighthree"
-    b2 = "sevenine"
-
-    # print(f"{b1} = {calculate_from_word_list(tokenize_nums(b1))}")
-    # print(f"{b2} = {calculate_from_word_list(tokenize_nums(b2))}")
-
     with open("input.txt", "r") as file:
         sum = 0
         for l in file.readlines():

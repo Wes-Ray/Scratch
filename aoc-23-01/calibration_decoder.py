@@ -33,7 +33,6 @@ def main():
     with open("input.txt", "r") as file:
         sum = 0
         for l in file.readlines():
-            print(l[:-1], " -> ", calculate_from_word_list(tokenize_nums(l)))
             sum += calculate_from_word_list(tokenize_nums(l))
         
         print("sum: ", sum)

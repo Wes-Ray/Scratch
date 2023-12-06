@@ -45,12 +45,7 @@ def main():
         [[0, 15, 37], [37, 52, 2], [39, 0, 15]]
         ...
     """
-    
-    new_seeds = []
-    for i in range(0, len(seeds), 2):
-        for x in range(seeds[i+1]):
-            new_seeds.append(seeds[i]+x)
-    seeds = new_seeds
+
     # print(f"seeds: {seeds}")
     # print(f"maps:")
     min_dest = 10**100

@@ -262,6 +262,10 @@ def part2() -> None:
         for i in range(len(lines)):
             matrix.append([x for x in lines[i][:-1]])
     
+    print("#### before matrix")
+    for row in matrix:
+        print("".join(row))
+
     print("maximizing")
     
     matrix = maximize_matrix(matrix)
@@ -294,9 +298,9 @@ def part2() -> None:
             #     break
 
 
-    # print("matrix")
-    # for row in matrix:
-    #     print("".join(row))
+    print("#### flooded matrix")
+    for row in matrix:
+        print("".join(row))
 
     print("### counting")
     total_commas = 0
@@ -317,9 +321,6 @@ def part2() -> None:
     
     print(f"total_dots: {total_dots}")
     print(f"total_commas: {total_commas}")
-    print(f"total symbols: {len(matrix) * len(matrix[0])}")
-        
-
 
 
 def main():

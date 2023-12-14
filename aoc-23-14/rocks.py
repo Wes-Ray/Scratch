@@ -1,4 +1,5 @@
 from numpy import array
+from functools import cache
 import time
 
 class dir:
@@ -11,40 +12,76 @@ class dir:
 
 
 def tilt(matrix : array, tilt_dir : tuple) -> None:
-    print("tilt")
+    # print(f"tilting {tilt_dir}")
 
     width = matrix[0].size  # width == height
 
-    # for i in range(width):  # repeats
-    #     for y in range(width-1, -1, -1):
-    #         # print(f"y: {y}")
-    #         for x in range(width):
-    #             # print(f"\tx: {x} {matrix[y][x]}")
-    #             if matrix[y][x] == 'O':
-    #                 if y-1 == -1:
-    #                     continue
-    #                 if matrix[y-1][x] == '.':
-    #                     matrix[y-1][x] = 'O'
-    #                     matrix[y][x] = '.'
+    match tilt_dir:
+        case dir.SOUTH:
+            for x in range(width):
+                floor = 0  # y value of floor
+                for y in range(width-1, -1, -1):
+                    if matrix[y][x] == '#':
+                        floor = y
+                    elif matrix[y][x] == 'O':
+                        matrix[y][x] = '.'
+                        floor -= 1  # depends on direction
+                        matrix[floor][x] = 'O'
+        case dir.NORTH:
+            for x in range(width):
+                floor = 0  # y value of floor
+                for y in range(0, width):
+                    if matrix[y][x] == '#':
+                        floor = y
+                    elif matrix[y][x] == 'O':
+                        matrix[y][x] = '.'
+                        floor += 1  # depends on direction
+                        matrix[floor][x] = 'O'
+        case dir.EAST:
+            for y in range(width):
+                floor = 0  # x value of floor
+                for x in range(width-1, -1, -1):
+                    if matrix[y][x] == '#':
+                        floor = x
+                    elif matrix[y][x] == 'O':
+                        matrix[y][x] = '.'
+                        floor -= 1  # depends on direction
+                        matrix[y][floor] = 'O'
+        case dir.WEST:
+            for y in range(width):
+                floor = 0  # x value of floor
+                for x in range(0, width):
+                    if matrix[y][x] == '#':
+                        floor = x
+                    elif matrix[y][x] == 'O':
+                        matrix[y][x] = '.'
+                        floor += 1  # depends on direction
+                        matrix[y][floor] = 'O'
 
-    # for y in range(width)
+    # # print
+    # print("-"*20)
+    # for r in matrix:
+    #     print("".join(r))
+    # print("-"*20)
 
-    
 
-def part1(input : str):
+def part2(input : str):
     rows = []
     with open(input, "r") as f:
         lines = f.readlines()
         for l in lines:
-            rows.append(list(l[:-1]))
+            rows.append(['#'] + list(l[:-1]) + ['#'])
+    boundary = list('#' * len(rows[0]))
+    matrix = array([boundary] + rows + [boundary])  # matrix[y][x]
+
+    tilt_count = 1000
+    print(f"tilting {tilt_count} times")
+    for i in range(tilt_count):
+        for card_dir in dir.CARDINALS:
+            tilt(matrix, card_dir)
     
-    matrix = array(rows)  # matrix[y][x]
-    # print(f"matrix: \n{matrix}")
-    
-    tilt(matrix, dir.NORTH)
-    
-    print("-"*20)
-    mult = matrix[0].size
+    print("~"*40)
+    mult = matrix[0].size - 1
     total = 0
     for r in matrix:
         for v in r:
@@ -59,7 +96,7 @@ def part1(input : str):
 def main():
     print("main")
     start = time.time()
-    part1("ezinput.txt")
+    part2("input.txt")
     end = time.time()
     print(f"Elapsed Time: {end - start}")
 

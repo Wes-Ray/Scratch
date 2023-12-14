@@ -2,11 +2,13 @@
 
 int main() {
 
-    char x[] = "this is a test"; 
+    int x = 0xF0;
 
-    printf("hello: %s\n", x);
-
-    printf("second print\n");
+    // printf("%x", x & (1 << 7));
+    x |= 1;
+    printf("%x\n", x);
+    x &= ~1;
+    printf("%x\n", x);
 
     return 0;
 }

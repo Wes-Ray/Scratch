@@ -7,7 +7,6 @@ def mirror_calc(matrix : list) -> int:
     width = len(matrix[0])
 
     # check left/right
-
     # process first row to generate candidate set
     candidate_x_delims = set()
     dy = 0
@@ -86,12 +85,12 @@ def part1(file_name : str):
         # print("RESULT COL: ", col)
 
         row = 0
-        # if col == 0:
-        #     # print("FLIPPING MATRIX")
-        #     # print("-"*30)
-        #     new_p = [[p[j][i] for j in range(len(p))] for i in range(len(p[0])-1,-1,-1)]
-        #     row = mirror_calc(new_p)
-        #     # print("row: ", row)
+        if col == 0:
+            # print("FLIPPING MATRIX")
+            # print("-"*30)
+            new_p = [[p[j][i] for j in range(len(p))] for i in range(len(p[0])-1,-1,-1)]
+            row = mirror_calc(new_p)
+            # print("row: ", row)
         
         print(f"\tcol={col}, row={row}")
         if row == 0 and col == 0:

@@ -1,5 +1,7 @@
 import time
 
+# part 1: 35538
+# part 2: 30442
 
 def mirror_calc(matrix : list) -> int:
 

@@ -141,14 +141,11 @@ def part1(file_name : str, start_particle : Light = Light(Vector2(1,0), Dir("RIG
 
     grid_cpy = [row.copy() for row in grid]
 
-    in_check = ""
-    # while in_check == "":
     for x in range(1000):
         if len(light_particles) == 0:
             # print(f"NO MORE LIGHT PARTICLES TO SIMULATE AFTER {x+1} STEPS")
             break
 
-        # update
         to_remove = []
         to_append = []
         for lp in light_particles:
@@ -165,14 +162,8 @@ def part1(file_name : str, start_particle : Light = Light(Vector2(1,0), Dir("RIG
         for lp in to_append:
             if lp not in light_particles:
                 light_particles.append(lp)
-    print(f"simulated in {x+1} steps")
 
-        # # draw
-        # print("-"*30)
-        # for row in grid:
-        #     print("".join(row))
-        
-        # in_check = input()
+    print(f"simulated in {x+1} steps")
     
     # draw
     # print("-"*30)
@@ -223,14 +214,6 @@ def main():
     t2 = time.time()
 
     print("elapsed time: ", t2 - t1)
-
-    # l1 = Light(Vector2(0,0), Dir("UP"))
-    # l2 = Light(Vector2(0,1), Dir("UP"))
-    # l3 = Light(Vector2(0,1), Dir("UP"))
-
-    # ls = [l1, l2]
-
-    # print("test ", l3 in ls)
 
 if __name__ == "__main__":
     main()

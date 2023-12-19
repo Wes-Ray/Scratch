@@ -162,6 +162,11 @@ def part1(file_name : str, start_particle : Light = Light(Vector2(1,0), Dir("RIG
         for lp in to_append:
             if lp not in light_particles:
                 light_particles.append(lp)
+        # draw  
+        print("-"*30)
+        for row in grid:
+            print("".join(row))
+        input()
 
     print(f"simulated in {x+1} steps")
     
@@ -209,8 +214,8 @@ def part2(file_name : str):
 
 def main():
     t1 = time.time()
-    # print(part1("input.txt"))
-    part2("input.txt")
+    print(part1("ezinput.txt"))
+    # part2("input.txt")
     t2 = time.time()
 
     print("elapsed time: ", t2 - t1)
